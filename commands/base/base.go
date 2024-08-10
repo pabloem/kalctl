@@ -6,6 +6,7 @@ import (
 	"github.com/pabloem/kalctl/auth"
 	"github.com/pabloem/kalctl/output"
 	"github.com/pabloem/kalctl/reqs"
+	"github.com/rs/zerolog/log"
 )
 
 type Element interface {
@@ -77,6 +78,7 @@ func (c *httpRequestCommand) Arguments() []Argument {
 }
 
 func (c *httpRequestCommand) Run(args CommandArgs) error {
+	log.Trace().Msgf("Running command %s", c.name)
 	authToken, err := auth.GetToken()
 	if err != nil {
 		return fmt.Errorf("unable to get auth token. run 'kalctl auth login' to authenticate", err)

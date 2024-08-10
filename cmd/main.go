@@ -32,7 +32,7 @@ func printHelp(elm base.Element, short bool) {
 	case base.Command:
 		if short {
 			for _, arg := range typedElm.Arguments() {
-				fmt.Println(formatter.Attribute(arg.Name))
+				fmt.Println(formatter.Attribute("--" + arg.Name))
 			}
 			return
 		}

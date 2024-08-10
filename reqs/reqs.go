@@ -5,6 +5,8 @@ import (
 	"net/http"
 	"path"
 	"strings"
+
+	"github.com/rs/zerolog/log"
 )
 
 const KALSHI_API_URL = "trading-api.kalshi.com"
@@ -63,6 +65,10 @@ func KalshiRequest(reqTemplate HttpRequestTemplate, token Token, body string) (s
 	}
 	// fmt.Println(req)
 	// fmt.Println(body)
+	log.Debug().
+		Str("method", req.Method).
+		Str("path", req.URL.Path).
+		Msgf("Sending request to %s", fullPath)
 
 	client := getHttpClient()
 	resp, err := client.Do(req)

@@ -13,48 +13,7 @@ import (
 var RootNs = base.NewNamespace(
 	"kalctl",
 	"Kalctl is a CLI tool for interfacing with the Kalshi Prediction Market APIs",
-	base.NewNamespace(
-		"markets",
-		"Interact with the markets",
-		base.NewNamespace(
-			"events",
-			"Query the events available in the markets",
-			base.NewCommand(
-				"list",
-				"List the events available in the markets",
-				reqs.HttpRequestTemplate{
-					Method: reqs.GET,
-					Path:   "trade-api/v2/markets/events",
-				},
-				base.Argument{
-					Name:     "limit",
-					Desc:     "Limit the number of events returned",
-					Position: -1,
-					Required: false,
-				},
-				base.Argument{
-					Name:     "series",
-					Desc:     "Filter by series",
-					Position: 0,
-					Required: false,
-				},
-			),
-			base.NewCommand(
-				"get",
-				"Get the details of a specific event",
-				reqs.HttpRequestTemplate{
-					Method: reqs.GET,
-					Path:   "trade-api/v2/markets/events/{event}",
-				},
-				base.Argument{
-					Name:     "event",
-					Desc:     "The ticker of the event to retrieve",
-					Position: 0,
-					Required: true,
-				},
-			),
-		),
-	),
+	impl.MarketsNamespace,
 	base.NewNamespace(
 		"exchange",
 		"Query the schedule and announcements from the exchange",
