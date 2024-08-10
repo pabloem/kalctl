@@ -13,7 +13,9 @@ import (
 
 func printHelp(elm base.Element, short bool) {
 	formatter := output.GetFormatter()
-	fmt.Println(formatter.Description(elm.Description()))
+	if !short {
+		fmt.Println(formatter.Description(elm.Description()))
+	}
 	switch typedElm := elm.(type) {
 	case base.Namespace:
 		if short {
@@ -113,7 +115,7 @@ func main() {
 
 	err := executeCommand(parsed)
 	if err != nil {
-		fmt.Println(err)
+		fmt.Printf("Error: %v\n", err)
 		os.Exit(1)
 	}
 }

@@ -23,7 +23,7 @@ type lipglossOutputFormatter struct {
 var defaultOutputFormatter = lipglossOutputFormatter{
 	titleStyle:    lipgloss.NewStyle().Bold(true),
 	descStyle:     lipgloss.NewStyle().Foreground(lipgloss.Color("#FFCC66")),
-	attrStyle:     lipgloss.NewStyle().Bold(true).PaddingLeft(4).Width(15),
+	attrStyle:     lipgloss.NewStyle().Bold(true).PaddingLeft(4).Width(25),
 	attrDescStyle: lipgloss.NewStyle().PaddingLeft(8).Width(58),
 	resultStyle:   lipgloss.NewStyle(),
 }

@@ -1,9 +1,12 @@
 package commands
 
 import (
+	"fmt"
+
 	"github.com/pabloem/kalctl/auth"
 	"github.com/pabloem/kalctl/commands/base"
 	"github.com/pabloem/kalctl/commands/impl"
+	"github.com/pabloem/kalctl/output"
 	"github.com/pabloem/kalctl/reqs"
 )
 
@@ -120,8 +123,10 @@ var RootNs = base.NewNamespace(
 			},
 		),
 	),
-	impl.NewCustomRunCommand("init", "Configure kalctl, including autocomplete and authentication",
+	impl.NewCustomRunCommand("init", "Configure kalctl autocomplete",
 		func(args base.CommandArgs) error {
-			return nil // TODO: Implement
+			fmt.Println(output.GetFormatter().AttributeDescription("Add the following to your .bashrc or .zshrc file:"))
+			fmt.Println(output.GetFormatter().CommandResult(impl.AUTOCOMPLETE_SCRIPT))
+			return nil
 		}),
 )
