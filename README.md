@@ -1,6 +1,35 @@
 # Kalctl - a CLI for the Kalshi.com API
 
-`kalctl` is a CLI to interact with the Kalshi API.
+`kalctl` is a CLI to interact with the Kalshi API. After installing the CLI, you can use it to get information about events, markets, trades, and more.
+
+**Usage**
+
+First you must authenticate to Kalshi.
+
+```bash
+kalctl auth login --perm
+```
+
+After authenticating, you can query events, markets, etc:
+
+```bash
+kalctl events list
+```
+
+```bash
+kalctl events get $EVENT_TICKER
+```
+
+```bash
+kalctl markets list
+```
+
+```bash
+kalctl markets get $MARKET_TICKER
+```
+
+Use `--help` to get more information about the commands.
+
 
 **Output formats**
 
