@@ -15,9 +15,8 @@ import (
 	"github.com/pabloem/kalctl/reqs"
 )
 
-var DefaultCredsFile = filepath.Join(os.Getenv("HOME"), ".kalctl/auth.json")
-var DefaultTokenFile = filepath.Join(os.Getenv("HOME"), ".kalctl/token.json")
-
+const DEFAULT_CREDS_FILE = ".kalctl/auth.json"
+const DEFAULT_TOKEN_FILE = ".kalctl/token.json"
 const KALSHI_AUTH_PATH = "trade-api/v2/login"
 
 type Creds struct {
@@ -26,7 +25,7 @@ type Creds struct {
 }
 
 func WriteToken(token reqs.Token) error {
-	file, err := os.OpenFile(DefaultTokenFile, os.O_CREATE|os.O_WRONLY, 0600)
+	file, err := os.OpenFile(DEFAULT_TOKEN_FILE, os.O_CREATE|os.O_WRONLY, 0600)
 	if err != nil {
 		return err
 	}
@@ -37,7 +36,7 @@ func WriteToken(token reqs.Token) error {
 }
 
 func GetToken() (reqs.Token, error) {
-	file, err := os.Open(DefaultTokenFile)
+	file, err := os.Open(filepath.Join(os.Getenv("HOME"), DEFAULT_TOKEN_FILE))
 	if err != nil {
 		return reqs.Token{}, err
 	}
@@ -54,7 +53,7 @@ func GetToken() (reqs.Token, error) {
 }
 
 func WriteUserCredentials(creds Creds) error {
-	file, err := os.OpenFile(DefaultCredsFile, os.O_CREATE|os.O_WRONLY, 0600)
+	file, err := os.OpenFile(filepath.Join(os.Getenv("HOME"), DEFAULT_CREDS_FILE), os.O_CREATE|os.O_WRONLY, 0600)
 	if err != nil {
 		return err
 	}
@@ -65,7 +64,7 @@ func WriteUserCredentials(creds Creds) error {
 }
 
 func ImportUserCredentials() (Creds, error) {
-	file, err := os.Open(DefaultCredsFile)
+	file, err := os.Open(DEFAULT_CREDS_FILE)
 	if err != nil {
 		return Creds{}, err
 	}

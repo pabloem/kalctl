@@ -28,8 +28,10 @@ var defaultOutputFormatter = lipglossOutputFormatter{
 	resultStyle:   lipgloss.NewStyle(),
 }
 
+var DefaultOutputFormatter OutputFormatter = &defaultOutputFormatter
+
 func GetFormatter() OutputFormatter {
-	return &defaultOutputFormatter
+	return DefaultOutputFormatter
 }
 
 func (d *lipglossOutputFormatter) Title(title string) string {

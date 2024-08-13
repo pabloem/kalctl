@@ -11,27 +11,27 @@
 
 |Status|API|Command|
 |---|---|---|
-|✅|[market/GetEvents](https://trading-api.readme.io/reference/getevents)|`kalctl market getevents`|
-|✅|[market/GetEvent](https://trading-api.readme.io/reference/getevent)|`kalctl market getevent`|
-|✅|[market/GetMarkets](https://trading-api.readme.io/reference/getmarkets)|`kalctl market getmarkets`|
-|✅|[market/GetMarket](https://trading-api.readme.io/reference/getmarket)|`kalctl market getmarket`|
-|✅|[market/GetMarketOrderbook](https://trading-api.readme.io/reference/getmarketorderbook)|`kalctl market getmarketorderbook`|
-|✅|[market/GetMarketCandlesticks](https://trading-api.readme.io/reference/getmarketcandlesticks)|`kalctl market getmarketcandlesticks`|
-|✅|[market/GetTrades](https://trading-api.readme.io/reference/gettrades)|`kalctl market gettrades`|
-|✅|[market/GetSeries](https://trading-api.readme.io/reference/getseries)|`kalctl market getseries`|
-|✅|[exchange/GetExchangeSchedule](https://trading-api.readme.io/reference/getexchangeschedule)|`kalctl exchange getexchangeschedule`|
-|✅|[exchange/GetExchangeAnnouncements](https://trading-api.readme.io/reference/getexchangeannouncements)|`kalctl exchange getexchangeannouncements`|
-|🚧|[portfolio/CreateOrder](https://trading-api.readme.io/reference/createorder)|`kalctl portfolio createorder`|
-|🚧|[portfolio/AmendOrder](https://trading-api.readme.io/reference/amendorder)|`kalctl portfolio createorder`|
-|🚧|[portfolio/DecreaseOrder](https://trading-api.readme.io/reference/decreaseorder)|`kalctl portfolio decreaseorder`|
-|🚧|[portfolio/CancelOrder](https://trading-api.readme.io/reference/cancelorder)|`kalctl portfolio cancelorder`|
-|🚧|[portfolio/GetOrders](https://trading-api.readme.io/reference/getorders)|`kalctl portfolio getorders`|
-|🚧|[portfolio/GetOrder](https://trading-api.readme.io/reference/getorder)|`kalctl portfolio getorder`|
-|🚧|[portfolio/GetFills](https://trading-api.readme.io/reference/getfills)|`kalctl portfolio getfills`|
-|🚧|[portfolio/BatchCreateOrders](https://trading-api.readme.io/reference/batchcreateorders)|`kalctl portfolio batchcreateorders`|
-|🚧|[portfolio/BatchCancelOrders](https://trading-api.readme.io/reference/batchcancelorders)|`kalctl portfolio batchcancelorders`|
+|✅|[market/GetEvents](https://trading-api.readme.io/reference/getevents)|`kalctl events list`|
+|✅|[market/GetEvent](https://trading-api.readme.io/reference/getevent)|`kalctl events get`|
+|✅|[market/GetMarkets](https://trading-api.readme.io/reference/getmarkets)|`kalctl markets list`|
+|✅|[market/GetMarket](https://trading-api.readme.io/reference/getmarket)|`kalctl markets get`|
+|✅|[market/GetMarketOrderbook](https://trading-api.readme.io/reference/getmarketorderbook)|`kalctl markets orderbook get`|
+|✅|[market/GetMarketCandlesticks](https://trading-api.readme.io/reference/getmarketcandlesticks)|`kalctl markets candlesticks get`|
+|✅|[market/GetTrades](https://trading-api.readme.io/reference/gettrades)|`kalctl trades list`|
+|✅|[market/GetSeries](https://trading-api.readme.io/reference/getseries)|`kalctl events series get`|
+|✅|[exchange/GetExchangeSchedule](https://trading-api.readme.io/reference/getexchangeschedule)|`kalctl exchange schedule get`|
+|✅|[exchange/GetExchangeAnnouncements](https://trading-api.readme.io/reference/getexchangeannouncements)|`kalctl exchange announcements get`|
+|🚧|[portfolio/CreateOrder](https://trading-api.readme.io/reference/createorder)|`kalctl portfolio orders create`|
+|🚧|[portfolio/AmendOrder](https://trading-api.readme.io/reference/amendorder)|`kalctl portfolio orders amend`|
+|🚧|[portfolio/DecreaseOrder](https://trading-api.readme.io/reference/decreaseorder)|`kalctl portfolio orders decrease`|
+|🚧|[portfolio/CancelOrder](https://trading-api.readme.io/reference/cancelorder)|`kalctl portfolio orders cancel`|
+|🚧|[portfolio/GetOrders](https://trading-api.readme.io/reference/getorders)|`kalctl portfolio orders list`|
+|🚧|[portfolio/GetOrder](https://trading-api.readme.io/reference/getorder)|`kalctl portfolio orders get`|
+|🚧|[portfolio/GetFills](https://trading-api.readme.io/reference/getfills)|`kalctl portfolio fills get`|
+|🚧|[portfolio/BatchCreateOrders](https://trading-api.readme.io/reference/batchcreateorders)|`kalctl portfolio orders batch create`|
+|🚧|[portfolio/BatchCancelOrders](https://trading-api.readme.io/reference/batchcancelorders)|`kalctl portfolio orders batch cancel`|
 |🚧|[portfolio/GetPositions](https://trading-api.readme.io/reference/getpositions)|`kalctl portfolio positions list`|
-|🚧|[portfolio/GetPortfolioSettlements](https://trading-api.readme.io/reference/getportfoliosettlements)|`kalctl portfolio get-settlements`|
+|🚧|[portfolio/GetPortfolioSettlements](https://trading-api.readme.io/reference/getportfoliosettlements)|`kalctl portfolio settlements list`|
 |🚧|[portfolio/GetPortfolioRestingOrderTotalValue](https://trading-api.readme.io/reference/getportfoliorestingordertotalvalue)|`kalctl portfolio restingordertotalvalue`|
 
 

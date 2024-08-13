@@ -61,10 +61,10 @@ func KalshiRequest(reqTemplate HttpRequestTemplate, token Token, body string) (s
 		req.Header.Add("Authorization", "Bearer "+token.Token)
 	}
 	if body != "" {
-		req.Body = io.NopCloser(strings.NewReader(body))
+		closer := io.NopCloser(strings.NewReader(body))
+		defer closer.Close()
+		req.Body = closer
 	}
-	// fmt.Println(req)
-	// fmt.Println(body)
 	log.Debug().
 		Str("method", req.Method).
 		Str("path", req.URL.Path).
