@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"os"
+	"path"
 	"path/filepath"
 	"strings"
 	"syscall"
@@ -25,9 +26,9 @@ type Creds struct {
 }
 
 func WriteToken(token reqs.Token) error {
-	file, err := os.OpenFile(DEFAULT_TOKEN_FILE, os.O_CREATE|os.O_WRONLY, 0600)
+	file, err := os.OpenFile(filepath.Join(os.Getenv("HOME"), DEFAULT_TOKEN_FILE), os.O_CREATE|os.O_WRONLY, 0600)
 	if err != nil {
-		return err
+		panic(err)
 	}
 	defer file.Close()
 
@@ -64,7 +65,7 @@ func WriteUserCredentials(creds Creds) error {
 }
 
 func ImportUserCredentials() (Creds, error) {
-	file, err := os.Open(DEFAULT_CREDS_FILE)
+	file, err := os.Open(path.Join(os.Getenv("HOME"), DEFAULT_CREDS_FILE))
 	if err != nil {
 		return Creds{}, err
 	}
@@ -132,7 +133,8 @@ func RunKalshiAuth(permAuth bool) error {
 			Method: reqs.POST,
 		},
 		reqs.Token{}, // Empty token
-		fmt.Sprintf(`{"email": "%s", "password": "%s"}`, creds.Username, creds.Password))
+		fmt.Sprintf(`{"email": "%s", "password": "%s"}`, creds.Username, creds.Password),
+		nil)
 	if err != nil {
 		return err
 	}
@@ -146,6 +148,9 @@ func RunKalshiAuth(permAuth bool) error {
 	token := reqs.Token{
 		Token:        authResponse.Token,
 		CreationTime: time.Now().Unix(),
+	}
+	if token.Token == "" {
+		return fmt.Errorf("received empty token. verify username and password.")
 	}
 	return WriteToken(token)
 }

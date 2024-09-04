@@ -77,6 +77,28 @@ func (c *httpRequestCommand) Arguments() []Argument {
 	return c.args
 }
 
+func mapArguments(cliArgs CommandArgs, argInfos []Argument) (map[string]string, error) {
+	argsMap := make(map[string]string)
+	for _, arg := range argInfos {
+		if arg.Position < 0 {
+			val, ok := cliArgs.KwArgs[arg.Name]
+			if ok {
+				argsMap[arg.Name] = val
+			}
+			continue
+		}
+		if arg.Position >= len(cliArgs.Args) {
+			if arg.Required {
+				log.Error().Msgf("Argument %s is required", arg.Name)
+				return nil, fmt.Errorf("Argument %s is required", arg.Name)
+			}
+			continue
+		}
+		argsMap[arg.Name] = cliArgs.Args[arg.Position]
+	}
+	return argsMap, nil
+}
+
 func (c *httpRequestCommand) Run(args CommandArgs) error {
 	log.Trace().Msgf("Running command %s", c.name)
 	authToken, err := auth.GetToken()
@@ -84,7 +106,12 @@ func (c *httpRequestCommand) Run(args CommandArgs) error {
 		return fmt.Errorf("unable to get auth token. run 'kalctl auth login' to authenticate", err)
 	}
 
-	res, err := reqs.KalshiRequest(c.template, authToken, "")
+	argsMap, err := mapArguments(args, c.args)
+	if err != nil {
+		return err
+	}
+	log.Debug().Msgf("Arguments: %v", argsMap)
+	res, err := reqs.KalshiRequest(c.template, authToken, "", argsMap)
 	if err != nil {
 		return err
 	}

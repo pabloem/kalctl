@@ -3,6 +3,7 @@ package reqs
 import (
 	"io"
 	"net/http"
+	"net/url"
 	"path"
 	"strings"
 
@@ -39,10 +40,18 @@ func getHttpClient() *http.Client {
 	return httpClient
 }
 
-func KalshiRequest(reqTemplate HttpRequestTemplate, token Token, body string) (string, error) {
+func KalshiRequest(reqTemplate HttpRequestTemplate, token Token, body string, urlArgs map[string]string) (string, error) {
 	var req *http.Request
 	var err error
+	var params url.Values
 	fullPath := "https://" + path.Join(KALSHI_API_URL, reqTemplate.Path)
+	if urlArgs != nil {
+		params = url.Values{}
+		for k, v := range urlArgs {
+			params.Add(k, v)
+		}
+		fullPath = "https://" + path.Join(KALSHI_API_URL, reqTemplate.Path, "?"+params.Encode())
+	}
 	switch reqTemplate.Method {
 	case GET:
 		req, err = http.NewRequest("GET", fullPath, nil)
@@ -68,6 +77,8 @@ func KalshiRequest(reqTemplate HttpRequestTemplate, token Token, body string) (s
 	log.Debug().
 		Str("method", req.Method).
 		Str("path", req.URL.Path).
+		Int("tokenLen", len(token.Token)).
+		Any("urlArgs", urlArgs).
 		Msgf("Sending request to %s", fullPath)
 
 	client := getHttpClient()

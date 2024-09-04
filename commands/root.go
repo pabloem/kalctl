@@ -122,7 +122,7 @@ func printHelp(elm base.Element, short bool) {
 		}
 		fmt.Println("Arguments:")
 		for _, arg := range typedElm.Arguments() {
-			fmt.Println(formatter.Attribute(arg.Name))
+			fmt.Println(formatter.Attribute("--" + arg.Name))
 			fmt.Println(formatter.AttributeDescription(arg.Desc))
 		}
 	}
@@ -168,6 +168,7 @@ func executeCommand(parsed base.CommandArgs) error {
 		case base.Namespace:
 			printHelp(typedElm, shortHelp)
 		case base.Command:
+			parsed.Args = parsed.Args[len(parsed.Args):]
 			return typedElm.Run(parsed)
 		}
 	}
